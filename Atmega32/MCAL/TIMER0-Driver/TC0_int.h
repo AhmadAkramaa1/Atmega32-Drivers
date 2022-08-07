@@ -70,19 +70,19 @@ void TC0_VoidCMPCallBack(PF VoidFuncNameCpy);
 
 /*
 
-	normal             ctc                  |	  	fastpwm  		                           |   phasepwm  
-											|								                   
-  	  tccr0 bit7 foc is active              |                           tccr0 bit7 foc is 0      
-	wgm00	 	      wgm10                 |        wgm11	 	                               |     wgm01
-											|								                   |
+	normal             ctc              |	  	fastpwm  		               |   phasepwm  
+				            |					               |								                   
+  	  tccr0 bit7 foc is active                                     tccr0 bit7 foc is 0      
+	wgm00	 	      wgm10         |        wgm11	 	                       |     wgm01
+					    |					               |
  Com bits 00 OC0off                         | Com bits 00 OC0off                               | Com bits 00 OC0off       
           01 toggle OC0                     |          01 reserved                             |          01 reserved
-		  10 clear  OC0                     |          10 clear when cmpmatch, set on TOP      |          10 clear on cmpmatch up, set on cmpmatch down
-		  11 SET    OC0                     |          11 SET   when cmpmatch,clear on TOP     |          11 SET   on cmpmatch up,clear on cmpmatch down
+		  10 clear  OC0             |          10 clear when cmpmatch, set on TOP      |          10 clear on cmpmatch up, set on cmpmatch down
+		  11 SET    OC0             |          11 SET   when cmpmatch,clear on TOP     |          11 SET   on cmpmatch up,clear on cmpmatch down
 -in ctc, if ocr=0, max freq occurs          |   if ocr=max,cmpmatch is ignored                 |   if ocr=max,cmpmatch is ignored
 -not recommended to generate waveforms      |,set or clear is done when reaching top           |            ,output will be high    for non-inverted(combits=10) and low when inverted(combits=11)
 in normal mode as it will take too much cpu |   ifocr=0 and (combits=01),genFreq 50 dutycycle  |   if ocr=0 ,output will be low     for non inverted(combits=10)and high when inverted(combits=11)
-time									    |   if ocr=0,a spike will occur only			   | oc0 changes without cmpmatch if ocr change value from max or timer start with bigger value than ocr   
+time					    |   if ocr=0,a spike will occur only	       | oc0 changes without cmpmatch if ocr change value from max or timer start with bigger value than ocr   
                                             | -OCR0 Update and TOV0 Interrupt Flag Set at max  | OCR0 Update at max & TOV0 Interrupt Flag Set at bottom
 
 

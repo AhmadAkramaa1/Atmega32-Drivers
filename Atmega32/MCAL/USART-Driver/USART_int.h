@@ -98,7 +98,7 @@ s16 USART_S16DataReceived_I(void);
 /**PfFuncNameCpy :void Func to be executed */
 /**               when interrupt is fired  */
 /*******************************************/
-void USART_VoidCallBack_TEmty(PF PfFuncNameCpy); 
+void USART_VoidCallBack_TEmpty(PF PfFuncNameCpy); 
 void USART_VoidCallBack_TComplete(PF PfFuncNameCpy);
 void USART_VoidCallBack_RComplete(PF PfFuncNameCpy);
 

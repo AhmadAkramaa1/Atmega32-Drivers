@@ -305,7 +305,7 @@ s16 USART_S16DataReceived_I(void)
 }
 
 
-void USART_VoidCallBack_TEmty(PF PfFuncNameCpy)
+void USART_VoidCallBack_TEmpty(PF PfFuncNameCpy)
 {
 	PfCallBackAddTXE = PfFuncNameCpy;
 } 

@@ -22,7 +22,7 @@ void SPI_VoidInit(void)
 	CLEAR_BIT(SPCR,6); //disable SPI 
 	#if (DATAORDER == MSB_FIRST)
 		CLEAR_BIT(SPCR,5);
-    #else              //default order is LSB_FIRST
+    	#else              //default order is LSB_FIRST
 		SET_BIT(SPCR,5);
 	#endif
 	
@@ -84,17 +84,29 @@ void SPI_VoidInit(void)
  
 }
 
-void SPI_VoidEnable(void){SET_BIT(SPCR,6);}
-void SPI_VoidDisable(void){CLEAR_BIT(SPCR,6);}
+void SPI_VoidEnable(void)
+{
+	SET_BIT(SPCR,6);
+}
+void SPI_VoidDisable(void)
+{
+	CLEAR_BIT(SPCR,6);
+}
 
-void SPI_VoidEnable_I(void){SET_BIT(SPCR,7);}
-void SPI_VoidDisable_I(void){CLEAR_BIT(SPCR,7);}
+void SPI_VoidEnable_I(void)
+{
+	SET_BIT(SPCR,7);
+}
+void SPI_VoidDisable_I(void)
+{
+	CLEAR_BIT(SPCR,7);
+}
 
 u8 SPI_U8ExchangeDataPol(u8 u8DataCpy)
 {
 	
 	SPDR = u8DataCpy;
-	if(GET_BIT(SPSR,6) == 1)          //If wcol became 1, read it then
+	if(GET_BIT(SPSR,6) == 1)             //If wcol became 1, read it then
 	{
 		while(GET_BIT(SPSR,7) == 0); //wait till Tcomplete
 		SPDR = u8DataCpy;            //then access SPDR to clear flag
@@ -111,7 +123,7 @@ void SPI_VoidSendData_I(u8 u8DataCpy)
 	if(GET_BIT(SPCR,7) == 1 )            //check if interrupt is enabled and
 	{
 		SPDR = u8DataCpy;
-		if(GET_BIT(SPSR,6) == 1)         //If wcol became 1, read it then 
+		if(GET_BIT(SPSR,6) == 1)             //If wcol became 1, read it then 
 		{
 			while(GET_BIT(SPSR,7) == 0); //wait till Tcomplete
 			SPDR = u8DataCpy;            //then access SPDR to clear flag
